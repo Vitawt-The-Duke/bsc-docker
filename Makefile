@@ -72,7 +72,7 @@ build-and-run-all:
 	docker-compose -f docker-compose.cluster.bootstrap.yml build
 	docker-compose -f docker-compose.cluster.blockscout.yml build
 	docker-compose -f docker-compose.cluster.bootstrap.yml run bootstrap-cluster
-	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats
+	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats blockscout
 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
 
 # Stop & reset
