@@ -102,7 +102,7 @@ services:
     ports:
       - 127.0.0.1:5432:5432
     volumes:
-      - pgql-data:/var/lib/postgresql/data
+      - ./storage/blockscout/postgre:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: kawaBanGa18341-sffsevsE
