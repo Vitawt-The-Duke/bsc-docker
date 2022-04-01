@@ -48,11 +48,11 @@ run-test-cluster:
 
 # Build & start multiple validator cluster with blockscout
 
-.PHONY:build-cluster-scout
-build-cluster-scout:
-	make build-bsc
-	docker-compose -f docker-compose.cluster.bootstrap.yml build
-	docker-compose -f docker-compose.cluster.blockscout.yml build
+# .PHONY:build-cluster-scout
+# build-cluster-scout:
+# 	make build-bsc
+# 	docker-compose -f docker-compose.cluster.bootstrap.yml build
+# 	docker-compose -f docker-compose.cluster.blockscout.yml build
 
 .PHONY:bootstrap-cluster
 bootstrap-cluster:
@@ -66,14 +66,14 @@ start-cluster:
 run-test-cluster:
 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
 
-.PHONY:build-and-run-all
-build-and-run-all:
-	make build-bsc
-	docker-compose -f docker-compose.cluster.bootstrap.yml build
-	docker-compose -f docker-compose.cluster.blockscout.yml build
-	docker-compose -f docker-compose.cluster.bootstrap.yml run bootstrap-cluster
-	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats blockscout
-	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
+# .PHONY:build-and-run-all
+# build-and-run-all:
+# 	make build-bsc
+# 	docker-compose -f docker-compose.cluster.bootstrap.yml build
+# 	docker-compose -f docker-compose.cluster.blockscout.yml build
+# 	docker-compose -f docker-compose.cluster.bootstrap.yml run bootstrap-cluster
+# 	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats blockscout
+# 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
 
 # Stop & reset
 

@@ -32,9 +32,9 @@ function generate_genesis() {
 
 function setup_genesis() {
      # set block per second
-     sed -i 's/\"period\":.*/\"period\": '1,'/g' tpl
+     sed -i 's/\"period\":.*/\"period\": '1,'/g' ${workspace}/genesis/genesis.json
      # set gasLimit (MGas) to 80M
-     sed -i 's/\"gasLimit\":.*/\"gasLimit\": '\"0x47b760\",'/g' tpl
+     sed -i 's/\"gasLimit\":.*/\"gasLimit\": '\"0x47b760\",'/g' ${workspace}/genesis/genesis.json
 }
 
 function init_genesis_data() {
