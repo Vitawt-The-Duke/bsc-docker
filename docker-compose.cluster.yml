@@ -55,16 +55,16 @@ services:
       WS_SECRET: bscpwd
     restart: always
 
-  truffle-test:
-    build: ./truffle-test
-    command: /scripts/truffle-test.sh
-    env_file: .env
-    environment:
-      RPC_HOST: cluster-bsc-rpc
-      RPC_PORT: 8545
-    volumes:
-      - ./scripts:/scripts
-    restart: always
+  # truffle-test:
+  #   build: ./truffle-test
+  #   command: /scripts/truffle-test.sh
+  #   env_file: .env
+  #   environment:
+  #     RPC_HOST: cluster-bsc-rpc
+  #     RPC_PORT: 8545
+  #   volumes:
+  #     - ./scripts:/scripts
+  #   restart: always
 
 networks:
   default:

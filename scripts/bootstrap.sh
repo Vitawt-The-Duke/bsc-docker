@@ -30,6 +30,13 @@ function generate_genesis() {
      node generate-genesis.js --chainid ${BSC_CHAIN_ID} --bscChainId ${chainIDHex}
 }
 
+function setup_genesis() {
+     # set block per second
+     sed -i 's/\"period\":.*/\"period\": '1,'/g' tpl
+     # set gasLimit (MGas) to 80M
+     sed -i 's/\"gasLimit\":.*/\"gasLimit\": '\"0x47b760\",'/g' tpl
+}
+
 function init_genesis_data() {
      node_type=$1
      node_id=$2
@@ -52,6 +59,9 @@ done
 
 # Then, use validator configs to generate genesis file
 generate_genesis
+
+# change genesis options
+setup_genesis
 
 # Finally, use genesis file to init cluster data
 init_genesis_data bsc-rpc bsc-rpc
