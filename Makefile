@@ -54,14 +54,6 @@ run-test-cluster:
 # 	docker-compose -f docker-compose.cluster.bootstrap.yml build
 # 	docker-compose -f docker-compose.cluster.blockscout.yml build
 
-.PHONY:bootstrap-cluster
-bootstrap-cluster:
-	docker-compose -f docker-compose.cluster.bootstrap.yml run bootstrap-cluster
-
-.PHONY:start-cluster
-start-cluster:
-	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats
-
 .PHONY:run-test-cluster
 run-test-cluster:
 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
