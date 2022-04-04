@@ -30,7 +30,7 @@ services:
     ports:
       - 3000:3000
     environment:
-      WS_SECRET: bscpwd
+      WS_SECRET: Z7hyvtISYCvg-SDa1
     restart: always
 
   truffle-test:
