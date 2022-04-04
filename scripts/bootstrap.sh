@@ -35,7 +35,7 @@ function setup_genesis() {
      sed -i 's/\"period\":.*/\"period\": '${BLOCK_TIME},'/g' ${workspace}/genesis/genesis.json
      # set gasLimit (MGas)
      GAS_LIMIT_HEX=0x$(printf "%x\n" $GAS_LIMIT)
-     sed -i 's/\"gasLimit\":.*/\"gasLimit\": '\"0x${GAS_LIMIT_HEX}\",'/g' ${workspace}/genesis/genesis.json
+     sed -i 's/\"gasLimit\":.*/\"gasLimit\": '\"${GAS_LIMIT_HEX}\",'/g' ${workspace}/genesis/genesis.json
 }
 
 function init_genesis_data() {
@@ -43,6 +43,7 @@ function init_genesis_data() {
      node_id=$2
      geth --datadir ${workspace}/storage/${node_id} init ${workspace}/genesis/genesis.json
      cp ${workspace}/config/config-${node_type}.toml  ${workspace}/storage/${node_id}/config.toml
+     cp ${workspace}/genesis/genesis.json  ${workspace}/storage/genesis.json
      sed -i -e "s/{{NetworkId}}/${BSC_CHAIN_ID}/g" ${workspace}/storage/${node_id}/config.toml
      if [ "${node_id}" == "bsc-rpc" ]; then
           cp ${workspace}/init-holders/* ${workspace}/storage/${node_id}/keystore
