@@ -16,4 +16,5 @@ geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUS
     --light.serve 50 --pprof.addr 0.0.0.0 --metrics \
     --rpc.allow-unprotected-txs --txlookuplimit  15768000 \
     --miner.gaslimit ${GAS_LIMIT} \
+    --miner.gastarget ${GAS_LIMIT} \
     --pprof
