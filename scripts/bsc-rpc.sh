@@ -15,4 +15,4 @@ done
 geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --syncmode full --gcmode archive \
-    -unlock ${unlock_sequences} --password /dev/null
+    -unlock ${unlock_sequences} --password ${KEY_PASSWORD}

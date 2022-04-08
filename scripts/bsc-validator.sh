@@ -12,7 +12,7 @@ echo "validator id: ${HOST_IP}"
 geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --bootnodes enode://${BOOTSTRAP_PUB_KEY}@${BOOTSTRAP_IP}:${BOOTSTRAP_TCP_PORT} \
-    --mine -unlock ${VALIDATOR_ADDR} --password /dev/null \
+    --mine -unlock ${VALIDATOR_ADDR} --password ${KEY_PASSWORD} \
     --light.serve 50 --pprof.addr 0.0.0.0 --metrics \
     --rpc.allow-unprotected-txs --txlookuplimit  15768000 \
     --miner.gaslimit ${GAS_LIMIT} \
