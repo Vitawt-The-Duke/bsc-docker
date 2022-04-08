@@ -12,6 +12,7 @@ services:
       - ./storage/bsc-rpc:/root/.ethereum
       - ./scripts:/scripts
       - ./config:/config
+      - ./config/passfile:/passfile
     command: ash /scripts/bsc-rpc.sh
 
   bsc-validator1:
@@ -23,6 +24,7 @@ services:
     volumes:
       - ./storage/bsc-validator1:/root/.ethereum
       - ./scripts:/scripts
+      - ./config/passfile:/passfile
     command: ash /scripts/bsc-validator.sh
 
   netstats:
