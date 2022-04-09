@@ -17,14 +17,11 @@ Create a private [Binance Smart Chain](https://github.com/binance-chain/bsc) clu
     
 ## Account & Private Keys
 ```
-Account 1: 0xb75573a04648535Bddc52adf6fBc887149624253, private key: 0x953dbe85f02d84377f90a6eb6d8a6dd128aa50f69c4671d32414b139040be24b
-Account 2: 0xA2bC4Cf857f3D7a22b29c71774B4d8f25cc7edD0, private key: 0xa568b36fca21714f879e3cf157f021a4c5dccd6229ef6e6eee7fb7888193c026
-Account 3: 0x59b02D4d2F94ea5c55230715a58EBb0b703bCD4B, private key: 0xc484de1ef84e998869d59752d1f09bffa161673d54250ea152ec82d684e2f154
-Account 4: 0xBb46AbbCC95213754f549E0CFa2B13bef0aBFaB6, private key: 0x4d5211ccb78c977d7ae7094b27b561458274a1c2df8be5f3c66479fe33ea8838
-Account 5: 0x8E1Ad6FaC6ea5871140594ABEF5b1D503385e936, private key: 0x3c6efff45290e2204cc19b091cdefffcead5757b074b1723e9cf8973e6337ba4
-Account 6: 0xC8D063A7e0A118432721daE5e059404b5598BD76, private key: 0x81f43b0303746bfacbaae64947850e86deca412d3b39b1f8d3c89bf483d615f3
-Account 7: 0xc32ec0115BCB6693d4b4854531cA5e6a99217ABF, private key: 0xeca0930606860b8ae4a7f2b9a56ee62c4e11f613a894810b7642cabef689cf09
-Account 8: 0x7fd60C817837dCFEFCa6D0A52A44980d12F70C59, private key: 0x68ef711b398fa47f22fbc44a972efbd2c2e25338e7c6afb92dc84b569bf784a5
+Account 1: 0x434B5eB10c9796082d929D6e831B79B1F030E4fa, private key: 0xd78b5396c3b29ddd57935c98fe4c7c66436a92e2dd051f368dd009f87a45245b
+Account 2: 0xC0855C5aaB9eEd3b126a50f9c7de2F804D50fcED, private key: 0x5c965a394cad7c185c01b16fe1895ebde5129847ff629d105e1e56eb3396d54b
+Account 3: 0x10302962E0361c18EEaA949063a816A8f8E43a85, private key: 0x474426d694ce14163c83248054800a83e20ce517d359a9f5227d201ca6865253
+Account 4: 0x7ddBf2b5c18be38E39d6347a5e0E1477348172C9, private key: 0xc9fd7fa71f8790cebc5280b6a96277532b0ce01fc30a5e11035e67adfe72623a
+Account 5: 0x37E2553D4fd2bc6BCc31d44013f2E23539a4611D, private key: 0x5f55abaf1f565ca15523e993a3c51800a53e9a23acb448f302ca09423eee76b7
 ```
 - ***(Optional)*** Below are commands to generate above account & keys from `init-holders` folder. 
     ```
@@ -119,3 +116,8 @@ chmod +x ./bootnode
 - Then, copy `bootstrap.key` over `config` directory
 - Finally, edit `.env` set `BOOTSTRAP_PUB_KEY` to new created value.
     - It will be used to construct bootnode endpoint `enode://${BOOTSTRAP_PUB_KEY}@${BOOTSTRAP_IP}:30311` for peer discovery mechanism.
+
+# Rebuild and redeploy
+```
+make stop-all && make reset && git pull && make build-cluster && make bootstrap-cluster && make start-cluster
+```
