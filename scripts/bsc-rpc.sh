@@ -14,8 +14,7 @@ done
 
 geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
-    --syncmode full --gcmode archive \
+    --syncmode ${SYNC_MODE} --gcmode archive \
     --rpc.allow-unprotected-txs \
-    --http \
-    --http.api admin,debug,net,eth,web3,txpool --http.vhosts '*' \
+    --http --http.api ${HTTP_API_MODULES} --http.vhosts '*' \
     -unlock ${unlock_sequences} --password "/passfile"
