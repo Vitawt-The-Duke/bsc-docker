@@ -15,4 +15,5 @@ done
 geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUSTER_CIDR} \
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --syncmode full --gcmode archive \
+    --rpc.allow-unprotected-txs \
     -unlock ${unlock_sequences} --password "/passfile"
