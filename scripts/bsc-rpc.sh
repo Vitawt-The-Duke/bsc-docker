@@ -16,5 +16,6 @@ geth --config ${DATA_DIR}/config.toml --datadir ${DATA_DIR} --netrestrict ${CLUS
     --verbosity ${VERBOSE} --nousb --ethstats ${NODE_ID}:${NETSTATS_URL} \
     --syncmode ${SYNC_MODE} --gcmode archive \
     --rpc.allow-unprotected-txs \
-    --http --http.api ${HTTP_API_MODULES} --http.vhosts '*' \
+    --http --http.api ${API_MODULES} --http.vhosts '*' \
+    --ws --ws.addr 0.0.0.0 --ws.port 8546 --ws.api ${API_MODULES} --ws.origins '*' \
     -unlock ${unlock_sequences} --password "/passfile"
