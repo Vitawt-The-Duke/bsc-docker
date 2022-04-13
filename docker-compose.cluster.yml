@@ -71,7 +71,7 @@ services:
   #   restart: always
 
   blockscout:
-    image: blockscout:latest
+    image: blockscout/blockscout
     command: mix do ecto.create, ecto.migrate, phx.server
     restart: unless-stopped
     ports:
