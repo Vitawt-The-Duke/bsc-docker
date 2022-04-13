@@ -3,6 +3,7 @@ version: "3"
 services:
   cluster-bsc-rpc: # This is the bootstrap node
     image: bsc-geth:docker-local
+    restart: unless-stopped
     env_file: .env
     ports:
       - 0.0.0.0:8545:8545
@@ -18,6 +19,7 @@ services:
 
   cluster-bsc-validator1:
     image: bsc-geth:docker-local
+    restart: unless-stopped
     env_file: .env
     environment:
       NODE_ID: bsc-validator1
@@ -30,6 +32,7 @@ services:
 
   cluster-bsc-validator2:
     image: bsc-geth:docker-local
+    restart: unless-stopped
     env_file: .env
     environment:
       NODE_ID: bsc-validator2
@@ -42,6 +45,7 @@ services:
 
   cluster-bsc-validator3:
     image: bsc-geth:docker-local
+    restart: unless-stopped
     env_file: .env
     environment:
       NODE_ID: bsc-validator3
@@ -54,11 +58,11 @@ services:
 
   netstats:
     build: ./netstats
+    restart: unless-stopped
     ports:
-      - 0.0.0.0:3000:3000
+      - 127.0.0.1:3000:3000
     environment:
       WS_SECRET: Z7hyvtISYCvg-SDa1
-    restart: always
 
   # truffle-test:
   #   build: ./truffle-test
@@ -70,47 +74,6 @@ services:
   #   volumes:
   #     - ./scripts:/scripts
   #   restart: always
-
-  blockscout:
-    image: blockscout/blockscout:4.1.2
-    command: mix do ecto.create, ecto.migrate, phx.server
-    restart: unless-stopped
-    ports:
-      - 0.0.0.0:4000:4000
-    volumes:
-      - ./blockscout/explorer_config.exs:/opt/app/apps/explorer/config/config.exs:ro
-      - ./blockscout/indexer_config.ex:/opt/app/apps/indexer/config/config.exs:ro
-      - ./blockscout/web_default.pot:/opt/app/apps/block_scout_web/priv/gettext/default.pot:ro
-      - ./blockscout/web_default.po:/opt/app/apps/block_scout_web/priv/gettext/en/LC_MESSAGES/default.po:ro
-      - ./blockscout/explorer_dev_geth.exs:/opt/app/apps/explorer/config/dev/geth.exs:ro
-      - ./blockscout/indexer_dev_geth.exs:/opt/app/apps/indexer/config/dev/geth.exs:ro
-    # https://github.com/blockscout/blockscout/blob/master/docker-compose/envs/common-blockscout.env
-    # env_file:
-    #   - ./common-blockscout.env
-    environment:
-        ETHEREUM_JSONRPC_VARIANT: 'geth'
-        BLOCK_TRANSFORMER: 'clique'
-        COIN: ETH
-        ETHEREUM_JSONRPC_HTTP_URL: http://cluster-bsc-rpc:8545
-        ETHEREUM_JSONRPC_WS_URL: ws://cluster-bsc-rpc:8546
-        DATABASE_URL: postgresql://app:kawaBanGa18341-sffsevsE@pgql:5432/app?ssl=false
-        ECTO_USE_SSL: 'false'
-        SECRET_KEY_BASE: PqJcENte9gOvC27lTWKW+RVIw5dPor732TjJVXPMnjGLL2rRGTKerxa6M3ed8gWZ
-    depends_on:
-      - pgql
-      - cluster-bsc-rpc
-
-  pgql:
-    image: postgres:13.6-alpine3.15
-    restart: unless-stopped
-    ports:
-      - 127.0.0.1:5432:5432
-    volumes:
-      - ./storage/pgql:/var/lib/postgresql/data
-    environment:
-      POSTGRES_USER: app
-      POSTGRES_PASSWORD: kawaBanGa18341-sffsevsE
-      POSTGRES_DB: app
 
 networks:
   default:
