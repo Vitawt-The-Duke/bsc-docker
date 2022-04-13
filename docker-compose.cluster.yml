@@ -5,7 +5,8 @@ services:
     image: bsc-geth:docker-local
     env_file: .env
     ports:
-      - 8545:8545
+      - 0.0.0.0:8545:8545
+      - 127.0.0.1:8546:8546
     environment:
       NODE_ID: bsc-rpc
     volumes:
@@ -71,7 +72,7 @@ services:
   #   restart: always
 
   blockscout:
-    image: blockscout/blockscout
+    image: blockscout/blockscout:4.1.2
     command: mix do ecto.create, ecto.migrate, phx.server
     restart: unless-stopped
     ports:
@@ -100,12 +101,12 @@ services:
       - cluster-bsc-rpc
 
   pgql:
-    image: postgres:alpine
+    image: postgres:13.6-alpine3.15
     restart: unless-stopped
     ports:
       - 127.0.0.1:5432:5432
     volumes:
-      - ./storage/blockscout/postgre:/var/lib/postgresql/data
+      - ./storage/pgql:/var/lib/postgresql/data
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: kawaBanGa18341-sffsevsE
