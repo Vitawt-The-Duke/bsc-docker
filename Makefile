@@ -40,32 +40,15 @@ bootstrap-cluster:
 
 .PHONY:start-cluster
 start-cluster:
-	docker-compose -f docker-compose.cluster.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats
+	docker-compose -f docker-compose.cluster.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats blockscout pgql
 
 .PHONY:run-test-cluster
 run-test-cluster:
 	docker-compose -f docker-compose.cluster.yml run truffle-test
 
-# Build & start multiple validator cluster with blockscout
-
-# .PHONY:build-cluster-scout
-# build-cluster-scout:
-# 	make build-bsc
-# 	docker-compose -f docker-compose.cluster.bootstrap.yml build
-# 	docker-compose -f docker-compose.cluster.blockscout.yml build
-
 .PHONY:run-test-cluster
 run-test-cluster:
 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
-
-# .PHONY:build-and-run-all
-# build-and-run-all:
-# 	make build-bsc
-# 	docker-compose -f docker-compose.cluster.bootstrap.yml build
-# 	docker-compose -f docker-compose.cluster.blockscout.yml build
-# 	docker-compose -f docker-compose.cluster.bootstrap.yml run bootstrap-cluster
-# 	docker-compose -f docker-compose.cluster.blockscout.yml up -d cluster-bsc-rpc cluster-bsc-validator1 cluster-bsc-validator2 cluster-bsc-validator3 netstats blockscout
-# 	docker-compose -f docker-compose.cluster.blockscout.yml run truffle-test
 
 # Stop & reset
 
